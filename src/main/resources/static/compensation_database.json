@@ -1,0 +1,11 @@
+{
+  "employee" : {
+    "employeeId" : "b7839309-3348-463b-a7e3-5de1c168beb3",
+    "firstName" : "Paul",
+    "lastName" : "McCartney",
+    "position" : "Developer I",
+    "department" : "Engineering"
+  },
+  "salary" : "12233",
+  "effectiveDate" : "456712"
+}
