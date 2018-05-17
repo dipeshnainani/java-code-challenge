@@ -82,5 +82,19 @@ Create a new type, Compensation. A Compensation has the following fields: employ
 two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the 
 Compensation from the persistence layer.
 
+## Implementation and Testing
+
+For Task 1 - Reporting Structure data class, controller, service and repository has been created. 
+To test the functionality use the path : localhost:8080/reporting/{id} here id is the employee id 
+to get the number of direct reports for that employee.
+
+For Task 2 - Compensation data class, controller, service and repositroy has been created. To test 
+the functionality use the path: localhost:8080/reporting to test the create method and pass the JSON
+object value and to test the read method use the path: localhost:8080/reporting/{id} to get the details
+of the compensation for the particular employee.
+
+The functionalities have been tested using the Postman application
+using the respective paths.
+
 ## Delivery
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.
