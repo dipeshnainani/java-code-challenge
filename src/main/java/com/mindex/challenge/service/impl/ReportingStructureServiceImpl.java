@@ -8,7 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * This is the reporting service implementation class which contains
@@ -49,17 +52,23 @@ public class ReportingStructureServiceImpl implements ReportingStructureService{
             throw new RuntimeException("Invalid employeeId: " + id);
         }
 
+        HashMap<String, List<Employee>> flowOfReports = new HashMap<>();
         List<Employee> reports = reportingStructure.getDirectReports();
         int count = 0, i = reports.size(), k = 0;
 
+        // hashmap to record the flow of direct reports
+        flowOfReports.put(reportingStructure.getEmployeeId(), reports);
+
         if(reports == null) {
+            System.out.println(reportingStructure.getEmployeeId() + " has no direct reports.");
             return 0;
         }
 
+        // helps in computing the number of direct reports and the flow of direct reports to the employee
         while(k < i) {
             ReportingStructure structures = reportingStructureRepository.getReportingStructuresByEmployeeId(reports.get(k).getEmployeeId());
-            System.out.println(structures.getEmployeeId() + "   " + structures.getDirectReports());
             List<Employee> listOfStructures = structures.getDirectReports();
+            flowOfReports.put(structures.getEmployeeId(),listOfStructures);
 
             if(listOfStructures == null) {
                 count = count + 1;
@@ -72,6 +81,25 @@ public class ReportingStructureServiceImpl implements ReportingStructureService{
             }
         }
 
+        System.out.println("Flow of Direct Reports");
+        // printing the flow of reports
+        for(String key: flowOfReports.keySet()){
+            List<Employee> listDirectReports = flowOfReports.get(key);
+
+            System.out.print(key + " direct reports ");
+
+            if(listDirectReports == null) {
+                System.out.print(listDirectReports);
+            }  else {
+                for (int value = 0 ; value < listDirectReports.size() ; value ++) {
+                    System.out.print(listDirectReports.get(value).getEmployeeId()+ " ");
+                }
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Number of direct reports to " + id + " is " + count);
         return count;
 
     }
