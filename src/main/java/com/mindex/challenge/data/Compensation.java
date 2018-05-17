@@ -1,5 +1,11 @@
 package com.mindex.challenge.data;
 
+/*
+ * Compensation data class which implements getter and
+ * setter methods for the components of Compensation.
+ *
+ * It can also be called as an entity class.
+ */
 public class Compensation {
 
     private Employee employee;

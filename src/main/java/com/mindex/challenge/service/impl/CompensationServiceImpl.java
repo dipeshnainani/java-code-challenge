@@ -9,6 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * This is the compensation implementation class which contains
+ * the actual implementation of the create and read method in detail.
+ */
+
 @Service
 public class CompensationServiceImpl implements CompensationService {
 
@@ -17,6 +22,9 @@ public class CompensationServiceImpl implements CompensationService {
     @Autowired
     private CompensationRepository compensationRepository;
 
+    /*
+     * Create method to create the reading.
+     */
     @Override
     public Compensation create(Compensation compensation) {
         LOG.debug("Creating compensation [{}]", compensation);
@@ -26,6 +34,10 @@ public class CompensationServiceImpl implements CompensationService {
         return compensation;
     }
 
+    /*
+     * Read method which returns the number of direct reports to the particular
+     * employee.
+     */
     @Override
     public Compensation read(String id) {
         LOG.debug("Reading compensation of employee with id [{}]", id);
